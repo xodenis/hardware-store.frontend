@@ -1,0 +1,124 @@
+@use 'sass:map';
+
+@import '../../assets/colors.scss';
+
+.header {
+  &-info {
+    border-bottom: 1px solid map-get($map: $colors, $key: secondary);
+  }
+  &-controls {
+    border-bottom: 1px solid map-get($map: $colors, $key: secondary);
+
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+  &-logo {
+    width: 100%;
+  }
+}
+
+.navbar {
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+  &-nav {
+    align-items: center;
+    justify-content: space-between;
+
+    &-link {
+      font-size: 20px;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      color: map-get($map: $colors, $key: black);
+
+      &:hover {
+        color: map-get($map: $colors, $key: primary);
+      }
+    }
+
+    &-item {
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      span {
+        display: block;
+        text-align: center;
+      }
+    }
+
+    &-icon {
+      margin-right: 10px;
+      font-size: 30px;
+      color: map-get($map: $colors, $key: primary);
+    }
+  }
+
+  &-expand {
+    justify-content: space-between;
+  }
+}
+
+.nav {
+  align-items: center;
+  justify-content: space-between;
+}
+
+.catalog {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  color: map-get($map: $colors, $key: white);
+  height: 55px;
+  border-radius: 5px;
+  background-color: map-get($map: $colors, $key: primary);
+
+  &-button {
+    padding: 10px;
+    padding-bottom: 8px;
+    border-right: 1px solid map-get($map: $colors, $key: primary-dark);
+
+    &-icon {
+      font-size: 30px;
+    }
+  }
+
+  &-text {
+    padding: 10px;
+  }
+}
+
+.search {
+  position: relative;
+
+  &-input {
+    height: 45px;
+    width: 100%;
+    padding: 5px 15px;
+    font-size: 20px;
+    color: map-get($map: $colors, $key: secondary-dark);
+
+    &::placeholder {
+      color: map-get($map: $colors, $key: secondary-dark);
+    }
+
+    &:focus {
+      border: 1px solid map-get($map: $colors, $key: primary);
+      box-shadow: none;
+      color: map-get($map: $colors, $key: secondary-dark);
+    }
+  }
+
+  &-icon {
+    position: absolute;
+    right: 15px;
+    top: 7px;
+    font-size: 30px;
+    color: map-get($map: $colors, $key: primary);
+  }
+}
