@@ -1,0 +1,23 @@
+@use 'sass:map';
+
+@import '../assets/colors.scss';
+
+.productCard {
+  padding: 15px;
+  border: 1px solid map-get($map: $colors, $key: secondary);
+
+  &-image {
+    width: 100%;
+  }
+  &-name,
+  &-price {
+    display: block;
+    text-align: center;
+  }
+
+  &-price {
+    margin-top: 25px;
+    font-weight: 600;
+    font-size: 20px;
+  }
+}
