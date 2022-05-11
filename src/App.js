@@ -1,13 +1,14 @@
 import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout/Layout'
+import Home from './components/Pages/Home/Home'
 
 function App() {
   return (
     <Layout>
       <Routes>
         <Route exact path="/" element={<Navigate to="/home" />} />
-        <Route path="home" element={<>Главная</>} />
+        <Route path="home" element={<Home />} />
         <Route path="contacts" element={<>Контакты</>} />
         <Route path="delivery" element={<>Доставка</>} />
         <Route path="favorites" element={<>Избранное</>} />

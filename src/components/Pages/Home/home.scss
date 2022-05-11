@@ -1,0 +1,26 @@
+@use 'sass:map';
+
+@import '../../assets/colors.scss';
+
+.carousel-indicators {
+  [data-bs-target] {
+    background-color: map-get($map: $colors, $key: primary);
+  }
+}
+
+.products {
+  display: flex;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+  width: 5%;
+}
+
+.carousel-control-prev-icon {
+  background-image: url('../../assets/img/chevron-left-solid.svg');
+}
+
+.carousel-control-next-icon {
+  background-image: url('../../assets/img/chevron-right-solid.svg');
+}
