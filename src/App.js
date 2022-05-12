@@ -2,6 +2,7 @@ import React from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import Layout from './components/Layout/Layout'
 import Home from './components/Pages/Home/Home'
+import { ProductsList } from './components/Pages/Products'
 
 function App() {
   return (
@@ -9,12 +10,10 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Navigate to="/home" />} />
         <Route path="home" element={<Home />} />
-        <Route path="products" element={<>Товары</>}>
-          <Route path=":categoryId" element={<>Товары по категории</>} />
-          <Route
-            path=":categoryId/:subcategoryId"
-            element={<>Товары по подкатегории</>}
-          />
+        <Route path="products" element={<ProductsList />}>
+          <Route path=":categoryId" element={<ProductsList />}>
+            <Route path=":subcategoryId" element={<ProductsList />} />
+          </Route>
         </Route>
         <Route path="contacts" element={<>Контакты</>} />
         <Route path="delivery" element={<>Доставка</>} />

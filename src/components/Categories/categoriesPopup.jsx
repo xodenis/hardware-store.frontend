@@ -19,7 +19,7 @@ export const CategoriesPopup = ({ isOpen = false, onClose }) => {
   }, [])
 
   return (
-    <div className={`categories-popup${isOpen == true ? ' open' : ''}`}>
+    <div className={`categories-popup${isOpen === true ? ' open' : ''}`}>
       <ul className="categories-list">
         {categories.map((category, index) => (
           <li
@@ -35,7 +35,9 @@ export const CategoriesPopup = ({ isOpen = false, onClose }) => {
             />
             <ul
               className={`subcategories-list ${
-                openSubcategory == category?.name ? 'open' : ''
+                openSubcategory === category?.name && isOpen === true
+                  ? 'open'
+                  : ''
               }`}
               style={{
                 top: index * -40 + 'px',

@@ -1,0 +1,9 @@
+@use 'sass:map';
+
+@import '../../assets/colors.scss';
+
+.products {
+  &-list {
+    position: relative;
+  }
+}

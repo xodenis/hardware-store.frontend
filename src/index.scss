@@ -1,5 +1,8 @@
+@use 'sass:map';
+
 @import-normalize;
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+@import '../src/components/assets/colors.scss';
 
 body {
   height: 100%;
@@ -15,4 +18,20 @@ body {
 
 .main {
   flex: 1 1 auto;
+
+  &-container {
+    flex: 1 1 auto;
+  }
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  svg,
+  circle {
+    stroke: map-get($map: $colors, $key: primary);
+  }
 }

@@ -12,6 +12,8 @@ import {
   faCalculator,
   faAngleDown,
   faAngleRight,
+  faMinus,
+  faPlus,
 } from '@fortawesome/free-solid-svg-icons'
 
 import { faClock, faHeart, faUser } from '@fortawesome/free-regular-svg-icons'
@@ -31,4 +33,6 @@ library.add(
   faCalculator,
   faAngleDown,
   faAngleRight,
+  faMinus,
+  faPlus,
 )
