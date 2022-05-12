@@ -9,6 +9,13 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Navigate to="/home" />} />
         <Route path="home" element={<Home />} />
+        <Route path="products" element={<>Товары</>}>
+          <Route path=":categoryId" element={<>Товары по категории</>} />
+          <Route
+            path=":categoryId/:subcategoryId"
+            element={<>Товары по подкатегории</>}
+          />
+        </Route>
         <Route path="contacts" element={<>Контакты</>} />
         <Route path="delivery" element={<>Доставка</>} />
         <Route path="favorites" element={<>Избранное</>} />
