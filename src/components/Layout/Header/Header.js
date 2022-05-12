@@ -1,11 +1,17 @@
 import { NavLink } from 'react-router-dom'
 import { Col, Container, Form, Nav, Navbar } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { CategoriesPopup } from '../../Categories'
 import logo from '../../assets/img/logo.svg'
 
 import './header.scss'
+import { useState } from 'react'
 
 const Header = () => {
+  const [showCategoryPopup, setShowCategoryPopup] = useState(false)
+
+  const handleCatalogClick = () => setShowCategoryPopup(!showCategoryPopup)
+
   return (
     <header className="header">
       <div className="header-info">
@@ -52,7 +58,7 @@ const Header = () => {
       <div className="header-controls">
         <Container>
           <Col xs={2}>
-            <div className="catalog">
+            <div className="catalog" onClick={() => handleCatalogClick()}>
               <div className="catalog-button">
                 <FontAwesomeIcon
                   className="catalog-button-icon"
@@ -60,8 +66,10 @@ const Header = () => {
                 />
               </div>
               <div className="catalog-text">Каталог товаров</div>
+              <CategoriesPopup isOpen={showCategoryPopup} />
             </div>
           </Col>
+
           <Col xs={4}>
             <div className="search">
               <Form.Control

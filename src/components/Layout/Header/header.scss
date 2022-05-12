@@ -7,6 +7,7 @@
     border-bottom: 1px solid map-get($map: $colors, $key: secondary);
   }
   &-controls {
+    position: relative;
     border-bottom: 1px solid map-get($map: $colors, $key: secondary);
 
     .container {
