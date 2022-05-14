@@ -3,9 +3,14 @@
 @import '../assets/colors.scss';
 
 .productCard {
-  position: relative;
-  padding: 15px;
-  border: 1px solid map-get($map: $colors, $key: secondary);
+  &-content {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    position: relative;
+    padding: 15px;
+    border: 1px solid map-get($map: $colors, $key: secondary);
+  }
 
   &-favorites {
     display: flex;
@@ -21,6 +26,14 @@
     background: none;
     color: map-get($map: $colors, $key: primary);
     font-size: 25px;
+
+    &:hover {
+      top: 8px;
+      right: 8px;
+      width: 29px;
+      height: 29px;
+      font-size: 29px;
+    }
   }
 
   a {
@@ -29,11 +42,14 @@
   }
 
   &-image {
-    width: 100%;
+    img {
+      width: 100%;
+    }
   }
 
   &-name {
     margin-top: 10px;
+    flex: 1 0 auto;
 
     &:hover {
       color: map-get($map: $colors, $key: primary);

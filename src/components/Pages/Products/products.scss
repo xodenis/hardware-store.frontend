@@ -3,6 +3,100 @@
 @import '../../assets/colors.scss';
 
 .products {
+  min-height: 800px;
+  margin-bottom: 35px;
+
+  &-title {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-weight: 500;
+    font-size: 36px;
+  }
+
+  &-controls {
+    &-content {
+      padding: 15px;
+      border: 1px solid map-get($map: $colors, $key: secondary);
+    }
+
+    &-separate {
+      margin-top: 10px;
+      margin-bottom: 20px;
+    }
+
+    &-price {
+      &-title {
+        font-weight: 400;
+        font-size: 18px;
+      }
+
+      &-slider {
+        border: none;
+        box-shadow: none;
+        padding: 0px;
+        padding-left: 10px;
+        padding-right: 10px;
+
+        .bar {
+          &-inner {
+            border-color: map-get($map: $colors, $key: secondary);
+            box-shadow: none;
+            background-color: map-get($map: $colors, $key: primary);
+          }
+        }
+
+        .thumb {
+          &::before {
+            margin: 0;
+            top: -6px;
+            left: -10px;
+            box-shadow: none;
+            border-color: map-get($map: $colors, $key: secondary);
+          }
+
+          .min-value,
+          .max-value {
+            box-shadow: none;
+            background-color: map-get($map: $colors, $key: primary);
+          }
+        }
+
+        .label {
+          margin-bottom: 0;
+        }
+      }
+    }
+
+    &-subcategories {
+      margin-bottom: 15px;
+
+      &-title {
+        font-weight: 400;
+        font-size: 18px;
+      }
+
+      &-list {
+        margin: 0;
+
+        &-item {
+          &:hover {
+            color: map-get($map: $colors, $key: primary);
+          }
+
+          a {
+            text-decoration: none;
+            color: map-get($map: $colors, $key: black);
+
+            &:hover {
+              text-decoration: underline;
+              color: map-get($map: $colors, $key: primary);
+            }
+          }
+        }
+      }
+    }
+  }
+
   &-list {
     position: relative;
   }

@@ -35,3 +35,23 @@ body {
     stroke: map-get($map: $colors, $key: primary);
   }
 }
+.path {
+  background-color: map-get($map: $colors, $key: secondary-light);
+}
+.breadcrumb {
+  margin: 0;
+  height: 55px;
+  align-items: center;
+
+  &-item {
+    a {
+      color: map-get($map: $colors, $key: black);
+      text-decoration: none;
+
+      &:hover {
+        color: map-get($map: $colors, $key: primary);
+        text-decoration: underline;
+      }
+    }
+  }
+}

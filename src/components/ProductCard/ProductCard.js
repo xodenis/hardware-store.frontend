@@ -30,19 +30,16 @@ const ProductCard = ({ product }) => {
   }
 
   return (
-    <Col>
-      <Col className="productCard">
-        <button className="productCard-favorites">
+    <Col className="productCard">
+      <div className="productCard-content">
+        <button className="productCard-favorites" title="Добавить в избранное">
           <FontAwesomeIcon icon="fa-regular fa-heart" />
         </button>
-        <a href={`/product/${product.id}`}>
-          <img
-            className="productCard-image"
-            src={'data:image/jpeg;base64,' + product.image}
-          />
+        <a href={`/product/${product.id}`} className="productCard-image">
+          <img src={'data:image/jpeg;base64,' + product.image} />
         </a>
-        <a href={`/product/${product.id}`}>
-          <span className="productCard-name">{product.name}</span>
+        <a href={`/product/${product.id}`} className="productCard-name">
+          <span>{product.name}</span>
         </a>
         <span className="productCard-price">
           {product.price + ' руб./' + product.priceInfo}
@@ -66,7 +63,7 @@ const ProductCard = ({ product }) => {
           </button>
         </div>
         <button className="productCard-addToCart">В корзину</button>
-      </Col>
+      </div>
     </Col>
   )
 }

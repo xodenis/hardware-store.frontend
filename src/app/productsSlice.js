@@ -8,6 +8,7 @@ import {
 const initialState = {
   loading: false,
   products: [],
+  maxProductsPrice: 0,
   error: '',
 }
 
@@ -23,11 +24,16 @@ export const productsSlice = createSlice({
       .addCase(getAllProducts.fulfilled, (state, action) => {
         state.loading = false
         state.products = action.payload
+        state.maxProductsPrice = action.payload.reduce(
+          (acc, curr) => (acc.price > curr.price ? acc.price : curr.price),
+          0,
+        )
         state.error = ''
       })
       .addCase(getAllProducts.rejected, (state, action) => {
         state.loading = false
         state.products = []
+        state.maxProductsPrice = 0
         state.error = action.error.message
       })
       .addCase(getProductsByCategory.pending, (state) => {
@@ -36,11 +42,16 @@ export const productsSlice = createSlice({
       .addCase(getProductsByCategory.fulfilled, (state, action) => {
         state.loading = false
         state.products = action.payload
+        state.maxProductsPrice = action.payload.reduce(
+          (acc, curr) => (acc.price > curr.price ? acc.price : curr.price),
+          0,
+        )
         state.error = ''
       })
       .addCase(getProductsByCategory.rejected, (state, action) => {
         state.loading = false
         state.products = []
+        state.maxProductsPrice = 0
         state.error = action.error.message
       })
       .addCase(getProductsBySubcategory.pending, (state) => {
@@ -49,11 +60,16 @@ export const productsSlice = createSlice({
       .addCase(getProductsBySubcategory.fulfilled, (state, action) => {
         state.loading = false
         state.products = action.payload
+        state.maxProductsPrice = action.payload.reduce(
+          (acc, curr) => (acc.price > curr.price ? acc.price : curr.price),
+          0,
+        )
         state.error = ''
       })
       .addCase(getProductsBySubcategory.rejected, (state, action) => {
         state.loading = false
         state.products = []
+        state.maxProductsPrice = 0
         state.error = action.error.message
       })
   },
