@@ -16,7 +16,13 @@ import {
   faPlus,
 } from '@fortawesome/free-solid-svg-icons'
 
-import { faClock, faHeart, faUser } from '@fortawesome/free-regular-svg-icons'
+import {
+  faClock,
+  faHeart,
+  faUser,
+  faEye,
+  faEyeSlash,
+} from '@fortawesome/free-regular-svg-icons'
 
 library.add(
   faPhone,
@@ -35,4 +41,6 @@ library.add(
   faAngleRight,
   faMinus,
   faPlus,
+  faEye,
+  faEyeSlash,
 )

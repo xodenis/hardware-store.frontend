@@ -1,7 +1,4 @@
-import MultiRangeSlider from 'multi-range-slider-react'
 import { useEffect, useState } from 'react'
-import { Container, Col, Row, Breadcrumb } from 'react-bootstrap'
-import { Oval } from 'react-loader-spinner'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import {
@@ -9,6 +6,10 @@ import {
   getProductsByCategory,
   getProductsBySubcategory,
 } from '../../../services/products'
+
+import { Container, Col, Row, Breadcrumb } from 'react-bootstrap'
+import { Oval } from 'react-loader-spinner'
+import MultiRangeSlider from 'multi-range-slider-react'
 import ProductCard from '../../ProductCard/ProductCard'
 
 import './products.scss'
@@ -26,7 +27,14 @@ export const ProductsList = () => {
   const [subcategory, setSubcategory] = useState()
   const [productsList, setProductsList] = useState([])
   const [minPrice, setMinPrice] = useState(0)
-  const [maxPrice, setMaxPrice] = useState()
+  const [maxPrice, setMaxPrice] = useState(9999)
+
+  // Get data from redux state
+  const { loading, products, maxProductsPrice } = useSelector(
+    (state) => state.productsSlice,
+  )
+  const { categories } = useSelector((state) => state.categoriesSlice)
+
   const handlePriceInput = (e) => {
     setMinPrice(e.minValue)
     setMaxPrice(e.maxValue)
@@ -36,12 +44,6 @@ export const ProductsList = () => {
       ),
     )
   }
-
-  // Get data from redux state
-  const { loading, products, maxProductsPrice } = useSelector(
-    (state) => state.productsSlice,
-  )
-  const { categories } = useSelector((state) => state.categoriesSlice)
 
   useEffect(() => {
     if (subcategoryId) dispatch(getProductsBySubcategory(subcategoryId))
@@ -99,9 +101,9 @@ export const ProductsList = () => {
         <div className="products">
           <h1 className="products-title">
             {subcategory?.name
-              ? subcategory.name
+              ? subcategory?.name
               : category?.name
-              ? category.name
+              ? category?.name
               : 'Список товаров'}
           </h1>
           <Row>
@@ -115,7 +117,9 @@ export const ProductsList = () => {
                     <hr className="products-controls-separate" />
                     <ul className="products-controls-subcategories-list">
                       {category?.subcategories.map((subcategory) => (
-                        <li className="products-controls-subcategories-list-item">
+                        <li
+                          key={subcategory.id}
+                          className="products-controls-subcategories-list-item">
                           <a
                             href={`/products/${category.id}/${subcategory.id}`}
                             className="">
