@@ -36,11 +36,6 @@
     }
   }
 
-  a {
-    color: map-get($map: $colors, $key: black);
-    text-decoration: none;
-  }
-
   &-image {
     img {
       width: 100%;
@@ -50,6 +45,8 @@
   &-name {
     margin-top: 10px;
     flex: 1 0 auto;
+    color: map-get($map: $colors, $key: black);
+    text-decoration: none;
 
     &:hover {
       color: map-get($map: $colors, $key: primary);

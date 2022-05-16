@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Col, Container, Form, Nav, Navbar } from 'react-bootstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -5,12 +7,18 @@ import { CategoriesPopup } from '../../Categories'
 import logo from '../../assets/img/logo.svg'
 
 import './header.scss'
-import { useState } from 'react'
+import { store } from '../../../app/store'
+import { getCart } from '../../../services/cart'
 
 const Header = () => {
+  const { cart } = useSelector((state) => state.cartSlice)
   const [showCategoryPopup, setShowCategoryPopup] = useState(false)
 
   const handleCatalogClick = () => setShowCategoryPopup(!showCategoryPopup)
+
+  useEffect(() => {
+    store.dispatch(getCart())
+  }, [])
 
   return (
     <header className="header">
@@ -91,19 +99,22 @@ const Header = () => {
               />
               Избранное
             </NavLink>
-            <NavLink className="navbar-nav-link" to="/profile">
+            <NavLink className="navbar-nav-link" to="/profile/info">
               <FontAwesomeIcon
                 className="navbar-nav-icon"
                 icon="fa-regular fa-user"
               />
               Личный кабинет
             </NavLink>
-            <NavLink className="navbar-nav-link" to="/cart">
+            <NavLink className="navbar-nav-link cart-link" to="/cart">
               <FontAwesomeIcon
                 className="navbar-nav-icon"
                 icon="fa-solid fa-cart-shopping"
               />
               Корзина
+              {cart.products && cart.products?.length != 0 && (
+                <span className="cart-link-count">{cart.products?.length}</span>
+              )}
             </NavLink>
           </Col>
         </Container>

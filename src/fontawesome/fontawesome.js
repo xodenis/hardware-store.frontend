@@ -14,6 +14,7 @@ import {
   faAngleRight,
   faMinus,
   faPlus,
+  faArrowRightFromBracket,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -22,6 +23,8 @@ import {
   faUser,
   faEye,
   faEyeSlash,
+  faPenToSquare,
+  faTrashCan,
 } from '@fortawesome/free-regular-svg-icons'
 
 library.add(
@@ -43,4 +46,7 @@ library.add(
   faPlus,
   faEye,
   faEyeSlash,
+  faPenToSquare,
+  faArrowRightFromBracket,
+  faTrashCan,
 )

@@ -1,0 +1,123 @@
+@use 'sass:map';
+
+@import '../../assets/colors.scss';
+
+.cart {
+  &-title {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 36px;
+
+    &-empty {
+      font-size: 26px;
+    }
+  }
+
+  &-list {
+    &-item {
+      margin-bottom: 15px;
+      height: 150px;
+
+      &-content {
+        display: flex;
+        height: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        padding: 15px;
+        border: 1px solid map-get($map: $colors, $key: secondary);
+      }
+
+      &-favorites {
+        display: none;
+      }
+
+      &-image {
+        height: 100%;
+        img {
+          height: 100%;
+        }
+      }
+
+      &-name {
+        width: 200px;
+        color: map-get($map: $colors, $key: black);
+        text-decoration: none;
+        text-align: left;
+
+        span {
+          overflow: hidden;
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          line-clamp: 0.3;
+        }
+
+        &:hover {
+          color: map-get($map: $colors, $key: primary);
+        }
+      }
+
+      &-name,
+      &-price {
+        display: block;
+      }
+
+      &-price {
+        text-align: center;
+        font-weight: 600;
+        font-size: 20px;
+      }
+
+      &-totalPrice {
+        text-align: center;
+        font-weight: 600;
+        font-size: 20px;
+      }
+
+      &-counter {
+        display: flex;
+        height: 45px;
+        width: 180px;
+        border: 1px solid map-get($map: $colors, $key: secondary);
+
+        &-count {
+          display: block;
+          width: calc(100% - 90px);
+          text-align: center;
+          font-size: 24px;
+          line-height: 46px;
+          border: none;
+          outline: none;
+        }
+
+        &-decrement,
+        &-increment {
+          display: block;
+          width: 45px;
+          height: 45px;
+          padding: 0;
+          border: none;
+          font-size: 25px;
+          color: map-get($map: $colors, $key: black);
+        }
+      }
+
+      &-addToCart {
+        display: none;
+      }
+
+      &-remove {
+        border: none;
+        background: none;
+        color: map-get($map: $colors, $key: black);
+        font-size: 25px;
+
+        &:hover {
+          color: map-get($map: $colors, $key: primary);
+        }
+      }
+    }
+  }
+}

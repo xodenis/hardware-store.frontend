@@ -43,6 +43,25 @@
       }
     }
 
+    &-link.cart-link {
+      position: relative;
+      .cart-link-count {
+        position: absolute;
+        top: -8px;
+        left: 100%;
+        display: block;
+        padding-left: 10px;
+        padding-right: 10px;
+        width: max-content;
+        height: 20px;
+        font-size: 14px;
+        color: map-get($map: $colors, $key: white);
+        border-radius: 10px;
+        background-color: map-get($map: $colors, $key: primary);
+        text-align: center;
+      }
+    }
+
     &-item {
       font-size: 20px;
       display: flex;

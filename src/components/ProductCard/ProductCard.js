@@ -1,14 +1,18 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useState } from 'react'
 import { Col } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
+import { store } from '../../app/store'
+import { addProduct, removeProduct } from '../../services/cart'
 
 import './productCard.scss'
 
-const ProductCard = ({ product }) => {
-  const params = useParams()
-  const [count, setCount] = useState(1)
-  console.log(params)
+const ProductCard = ({
+  product,
+  initialCount = 1,
+  cartMode = false,
+  className = 'productCard',
+}) => {
+  const [count, setCount] = useState(initialCount)
 
   const handleCountChange = (e) => {
     if (e.target.value) {
@@ -19,7 +23,7 @@ const ProductCard = ({ product }) => {
     }
   }
 
-  const handleClicIncrement = () => {
+  const handleClickIncrement = () => {
     if (count < product.totalCount) setCount(+count + 1)
     else setCount(product.totalCount)
   }
@@ -29,40 +33,73 @@ const ProductCard = ({ product }) => {
     else setCount(1)
   }
 
+  const addToCart = (productId, count) => {
+    store.dispatch(addProduct({ productId, count }))
+  }
+
+  const handleClickRemove = (productId) => {
+    store.dispatch(removeProduct(productId))
+  }
+
   return (
-    <Col className="productCard">
-      <div className="productCard-content">
-        <button className="productCard-favorites" title="Добавить в избранное">
-          <FontAwesomeIcon icon="fa-regular fa-heart" />
-        </button>
-        <a href={`/product/${product.id}`} className="productCard-image">
+    <Col className={`${className}`}>
+      <div className={`${className}-content`}>
+        {!cartMode && (
+          <button
+            className={`${className}-favorites`}
+            title="Добавить в избранное">
+            <FontAwesomeIcon icon="fa-regular fa-heart" />
+          </button>
+        )}
+        <a href={`/product/${product.id}`} className={`${className}-image`}>
           <img src={'data:image/jpeg;base64,' + product.image} />
         </a>
-        <a href={`/product/${product.id}`} className="productCard-name">
+        <a
+          href={`/product/${product.id}`}
+          className={`${className}-name`}
+          title={product.name}>
           <span>{product.name}</span>
         </a>
-        <span className="productCard-price">
+        <span className={`${className}-price`}>
           {product.price + ' руб./' + product.priceInfo}
         </span>
-        <div className="productCard-counter">
+        <div className={`${className}-counter`}>
           <button
-            className="productCard-counter-decrement"
+            className={`${className}-counter-decrement`}
             onClick={() => handleClickDecrement()}>
             <FontAwesomeIcon icon="fa-solid fa-minus" />
           </button>
           <input
             type="text"
-            className="productCard-counter-count"
+            className={`${className}-counter-count`}
             value={count}
             onChange={handleCountChange}
           />
           <button
-            className="productCard-counter-increment"
-            onClick={() => handleClicIncrement()}>
+            className={`${className}-counter-increment`}
+            onClick={() => handleClickIncrement()}>
             <FontAwesomeIcon icon="fa-solid fa-plus" />
           </button>
         </div>
-        <button className="productCard-addToCart">В корзину</button>
+        {cartMode && (
+          <span className={`${className}-totalPrice`}>
+            {Math.round(initialCount * product.price * 100) / 100 + ' руб.'}
+          </span>
+        )}
+        {cartMode && (
+          <button
+            className={`${className}-remove`}
+            onClick={() => handleClickRemove(product.id)}>
+            <FontAwesomeIcon icon="fa-regular fa-trash-can" />
+          </button>
+        )}
+        {!cartMode && (
+          <button
+            className={`${className}-addToCart`}
+            onClick={() => addToCart(product.id, count)}>
+            В корзину
+          </button>
+        )}
       </div>
     </Col>
   )
