@@ -1,0 +1,96 @@
+@use 'sass:map';
+
+@import '../../assets/colors.scss';
+
+.profile {
+  flex: 1 1 auto;
+
+  &-title {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 36px;
+  }
+  &-navigation {
+    .navbar {
+      align-items: start;
+      padding: 0;
+      &-nav {
+        justify-content: flex-start;
+        flex-direction: column;
+        align-items: flex-start;
+
+        &-link {
+          font-size: 18px;
+          margin-bottom: 10px;
+
+          &.active {
+            color: map-get($map: $colors, $key: primary);
+          }
+        }
+
+        &-icon {
+          font-size: 25px;
+        }
+      }
+    }
+
+    &-logout {
+      display: flex;
+      margin: 0;
+      margin-top: 25px;
+      padding: 0;
+      border: none;
+      background: none;
+      font-size: 18px;
+      color: map-get($map: $colors, $key: black);
+
+      &:hover {
+        color: map-get($map: $colors, $key: primary);
+      }
+    }
+  }
+
+  &-info {
+    &-title {
+      font-size: 24px;
+    }
+
+    &-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    &-item {
+      width: calc((100% - 15px) / 2);
+      margin-bottom: 10px;
+    }
+
+    &-controls {
+      display: flex;
+      justify-content: flex-end;
+
+      &-save,
+      &-cancel {
+        padding: 15px;
+        font-size: 20px;
+        border: none;
+        border-radius: 15px;
+      }
+
+      &-save {
+        padding-left: 35px;
+        padding-right: 35px;
+        color: map-get($map: $colors, $key: white);
+        background-color: map-get($map: $colors, $key: primary);
+        margin-right: 15px;
+      }
+
+      &-cancel {
+        padding-left: 25px;
+        padding-right: 25px;
+        background-color: map-get($map: $colors, $key: secondary);
+      }
+    }
+  }
+}

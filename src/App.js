@@ -8,6 +8,8 @@ import Login from './components/Pages/Login/Login'
 import { ProductsList } from './components/Pages/Products'
 import PrivateRoute from './components/PrivateRoute'
 import { tokenExpire, userAuthenticated } from './app/authSlice'
+import { Profile, ProfileInfo, ProfileOrders } from './components/Pages/Profile'
+import { Cart } from './components/Pages/Cart'
 
 function App() {
   useEffect(() => {
@@ -43,9 +45,30 @@ function App() {
         />
         <Route
           path="profile"
-          element={<PrivateRoute>Личный кабинет</PrivateRoute>}
+          element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          }>
+          <Route path="info" element={<ProfileInfo />} />
+          <Route
+            path="orders"
+            element={
+              <PrivateRoute>
+                <ProfileOrders />
+              </PrivateRoute>
+            }
+          />
+          <Route path="settings" element={<ProfileInfo editMode />} />
+        </Route>
+        <Route
+          path="cart"
+          element={
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          }
         />
-        <Route path="cart" element={<PrivateRoute>Корзина</PrivateRoute>} />
         <Route path="payment-info" element={<>Способы оплаты</>} />
       </Routes>
     </Layout>

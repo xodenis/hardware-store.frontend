@@ -10,7 +10,7 @@ const Input = ({
   type = 'text',
   placeholder = '',
   value = '',
-  readonly = '',
+  readOnly = false,
   error = '',
   onChange,
 }) => {
@@ -23,19 +23,13 @@ const Input = ({
       <label className="input-label">{label}</label>
       <div className="input-wrapper">
         <input
-          className={
-            readonly === 'default'
-              ? 'readonly'
-              : readonly && readonly === 'gray'
-              ? 'readonly-gray'
-              : ''
-          }
+          className={readOnly ? 'readonly' : ''}
           name={name}
           type={showPassword ? 'text' : type}
           placeholder={placeholder}
           value={value}
           onChange={onChange}
-          readOnly={readonly ? true : false}
+          readOnly={readOnly ? true : false}
         />
         {type === 'password' && (
           <button
