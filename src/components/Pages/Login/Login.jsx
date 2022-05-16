@@ -47,7 +47,9 @@ const Login = () => {
   }, [formErrors])
 
   if (isAuthenticated)
-    return <Navigate to="/profile" state={{ from: location }} />
+    return (
+      <Navigate to={location.state.from.pathname} state={{ from: location }} />
+    )
 
   return (
     <Container className="login">
