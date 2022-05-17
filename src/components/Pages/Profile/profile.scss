@@ -93,4 +93,184 @@
       }
     }
   }
+
+  &-orders {
+    &-title {
+      font-size: 24px;
+    }
+
+    &-item {
+      margin-bottom: 15px;
+      border: 1px solid map-get($map: $colors, $key: secondary);
+
+      &-header {
+        padding: 0;
+
+        .row {
+          margin: 0;
+        }
+
+        .row > * {
+          padding: 0;
+        }
+      }
+
+      &-number {
+        font-weight: 400;
+        font-size: 24px;
+        color: map-get($map: $colors, $key: black);
+
+        span {
+          display: flex;
+        }
+      }
+
+      &-date {
+        display: flex;
+        align-items: end;
+        margin-left: 10px;
+        margin-bottom: 3px;
+        font-weight: 400;
+        font-size: 16px;
+        color: map-get($map: $colors, $key: secondary-dark);
+      }
+
+      &-status {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 400;
+        font-size: 16px;
+
+        .status {
+          padding: 3px 25px;
+          border-radius: 15px;
+
+          &.created {
+            color: map-get($map: $colors, $key: background-dark);
+            background-color: map-get($map: $colors, $key: secondary);
+          }
+
+          &.in-delivery {
+            color: map-get($map: $colors, $key: white);
+            background-color: map-get($map: $colors, $key: primary);
+          }
+
+          &.pending-in-store {
+            color: map-get($map: $colors, $key: white);
+            background-color: map-get($map: $colors, $key: primary);
+          }
+
+          &.completed {
+            color: map-get($map: $colors, $key: white);
+            background-color: map-get($map: $colors, $key: green);
+          }
+        }
+      }
+
+      &-count {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 400;
+        font-size: 18px;
+        color: map-get($map: $colors, $key: black);
+      }
+
+      &-price {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        font-weight: 600;
+        font-size: 22px;
+        color: map-get($map: $colors, $key: black);
+      }
+
+      &-product {
+        margin-bottom: 15px;
+
+        &:last-child {
+          margin: 0;
+        }
+
+        .row {
+          margin: 0;
+        }
+
+        .row > * {
+          padding: 0;
+        }
+
+        &-content {
+          display: flex;
+          height: 100px;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+        }
+
+        &-info {
+          display: flex;
+          height: 100%;
+        }
+
+        &-image {
+          display: block;
+          height: 100%;
+          width: max-content;
+          img {
+            height: 100%;
+          }
+        }
+
+        &-name {
+          display: flex;
+          align-items: center;
+          width: 350px;
+          margin-left: 25px;
+          color: map-get($map: $colors, $key: black);
+          text-decoration: none;
+          text-align: left;
+
+          &:hover {
+            color: map-get($map: $colors, $key: primary);
+          }
+        }
+
+        &-count {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        &-price {
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+}
+
+.accordion {
+  &-header {
+  }
+  &-button {
+    &::after {
+      content: none;
+    }
+
+    &:focus {
+      border: none;
+      box-shadow: none;
+    }
+
+    &:not(.collapsed) {
+      border-bottom: 1px solid map-get($map: $colors, $key: secondary);
+      color: map-get($map: $colors, $key: black);
+      background: none;
+      box-shadow: none;
+    }
+  }
 }
