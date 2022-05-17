@@ -10,6 +10,7 @@
     position: relative;
     padding: 15px;
     border: 1px solid map-get($map: $colors, $key: secondary);
+    background-color: map-get($map: $colors, $key: white);
   }
 
   &-favorites {
