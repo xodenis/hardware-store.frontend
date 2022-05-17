@@ -1,0 +1,61 @@
+@use 'sass:map';
+
+@import '../../assets/colors.scss';
+
+.order {
+  margin-top: 25px;
+
+  &-title {
+    font-weight: 500;
+    font-size: 36px;
+    margin-bottom: 25px;
+  }
+
+  &-info,
+  &-payment,
+  &-delivery {
+    &-title {
+      margin-bottom: 25px;
+      font-weight: 500;
+      font-size: 26px;
+    }
+  }
+
+  &-info {
+    &-contacts {
+      .input {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  &-payment-delivery {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  &-controls {
+    align-items: center;
+  }
+
+  &-confirm {
+    display: block;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    background-color: map-get($map: $colors, $key: primary);
+    color: map-get($map: $colors, $key: white);
+    font-weight: 500;
+    font-size: 22px;
+    transition: all 0.3s;
+
+    &:hover {
+      box-shadow: inset 0px 0px 1px 1px map-get($map: $colors, $key: primary);
+      color: map-get($map: $colors, $key: primary);
+      background-color: map-get($map: $colors, $key: white);
+    }
+  }
+}

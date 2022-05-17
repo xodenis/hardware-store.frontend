@@ -10,6 +10,7 @@ import PrivateRoute from './components/PrivateRoute'
 import { tokenExpire, userAuthenticated } from './app/authSlice'
 import { Profile, ProfileInfo, ProfileOrders } from './components/Pages/Profile'
 import { Cart } from './components/Pages/Cart'
+import { Order, OrderInfo } from './components/Pages/Order'
 
 function App() {
   useEffect(() => {
@@ -69,6 +70,15 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route
+          path="order"
+          element={
+            <PrivateRoute>
+              <Order />
+            </PrivateRoute>
+          }>
+          <Route path="confirm" element={<OrderInfo />} />
+        </Route>
         <Route path="payment-info" element={<>Способы оплаты</>} />
       </Routes>
     </Layout>

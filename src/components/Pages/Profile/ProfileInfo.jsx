@@ -51,7 +51,7 @@ export const ProfileInfo = ({ editMode = false }) => {
         </div>
         <div className="profile-info-item">
           <Input
-            name="surname"
+            name="name"
             type="text"
             label="Имя"
             value={userInfo.name}

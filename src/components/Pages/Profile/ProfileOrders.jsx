@@ -45,8 +45,6 @@ export const ProfileOrders = () => {
     ]
   }
 
-  console.log(status[0].name)
-
   useEffect(() => {
     store.dispatch(getOrders())
   }, [])
