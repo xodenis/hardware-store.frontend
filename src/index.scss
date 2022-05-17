@@ -59,3 +59,14 @@ body {
     }
   }
 }
+
+.form-check-input {
+  &:checked {
+    background-color: map-get($map: $colors, $key: primary);
+    border-color: map-get($map: $colors, $key: primary);
+  }
+
+  &:focus {
+    box-shadow: none;
+  }
+}

@@ -9,8 +9,8 @@ const initialState = {
   error: '',
 }
 
-export const cartSlice = createSlice({
-  name: 'cart',
+export const orderSlice = createSlice({
+  name: 'order',
   initialState: initialState,
   reducers: {},
   extraReducers: (builder) => {
@@ -20,7 +20,7 @@ export const cartSlice = createSlice({
       })
       .addCase(getOrders.fulfilled, (state, action) => {
         state.loading = false
-        state.orders = action.payload
+        state.orders = action.payload.sort((a, b) => b.id - a.id)
         state.error = ''
       })
       .addCase(getOrders.rejected, (state, action) => {
@@ -51,4 +51,4 @@ export const cartSlice = createSlice({
   },
 })
 
-export default cartSlice.reducer
+export default orderSlice.reducer

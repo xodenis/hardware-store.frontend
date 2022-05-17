@@ -17,7 +17,7 @@ export const getOrders = createAsyncThunk('order/get', async () => {
   return response.data
 })
 
-export const addOrder = createAsyncThunk('order/add', async (products) => {
-  const response = await axiosInstance.post('/add', products)
+export const addOrder = createAsyncThunk('order/add', async (order) => {
+  const response = await axiosInstance.post('/add', order)
   return response.data
 })

@@ -120,4 +120,44 @@
       }
     }
   }
+
+  &-controls {
+    display: flex;
+    flex-direction: column;
+
+    &-checkout {
+      display: block;
+      margin-top: 25px;
+      padding: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+      text-decoration: none;
+      text-align: center;
+      background-color: map-get($map: $colors, $key: primary);
+      color: map-get($map: $colors, $key: white);
+      font-weight: 500;
+      font-size: 22px;
+      transition: all 0.3s;
+
+      &:hover {
+        box-shadow: inset 0px 0px 1px 1px map-get($map: $colors, $key: primary);
+        color: map-get($map: $colors, $key: primary);
+        background-color: map-get($map: $colors, $key: white);
+      }
+    }
+
+    &-clearAll {
+      margin-top: 20px;
+      border: none;
+      background: none;
+      font-weight: 400;
+      font-size: 20px;
+
+      &-icon {
+        margin-right: 10px;
+        color: map-get($map: $colors, $key: primary);
+        font-size: 25px;
+      }
+    }
+  }
 }
