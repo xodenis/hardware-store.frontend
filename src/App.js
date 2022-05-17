@@ -11,8 +11,16 @@ import { tokenExpire, userAuthenticated } from './app/authSlice'
 import { Profile, ProfileInfo, ProfileOrders } from './components/Pages/Profile'
 import { Cart } from './components/Pages/Cart'
 import { Order, OrderInfo } from './components/Pages/Order'
+import { useSelector } from 'react-redux'
+import { getCart } from './services/cart'
 
 function App() {
+  const { isAuthenticated } = useSelector((state) => state.authSlice)
+
+  useEffect(() => {
+    if (isAuthenticated) store.dispatch(getCart())
+  }, [isAuthenticated])
+
   useEffect(() => {
     const token = sessionStorage.getItem('token')
 

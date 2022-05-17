@@ -44,3 +44,13 @@ export const removeAllProducts = createAsyncThunk(
     return response.data
   },
 )
+
+export const changeCount = createAsyncThunk(
+  'cart/change_count',
+  async ({ productId, count }) => {
+    const response = await axiosInstance.put(
+      `/change_count?productId=${productId}&newCount=${count}`,
+    )
+    return response.data
+  },
+)

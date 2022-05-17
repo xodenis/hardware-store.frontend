@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {
   addProduct,
+  changeCount,
   getCart,
   removeAllProducts,
   removeProduct,
@@ -70,6 +71,20 @@ export const cartSlice = createSlice({
         state.error = ''
       })
       .addCase(removeAllProducts.rejected, (state, action) => {
+        state.loading = false
+        state.cart = {}
+        state.error = action.error.message
+      })
+
+      .addCase(changeCount.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(changeCount.fulfilled, (state, action) => {
+        state.loading = false
+        state.cart = action.payload
+        state.error = ''
+      })
+      .addCase(changeCount.rejected, (state, action) => {
         state.loading = false
         state.cart = {}
         state.error = action.error.message

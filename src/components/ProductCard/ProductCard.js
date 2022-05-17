@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Col, FormCheck, Row } from 'react-bootstrap'
 import { store } from '../../app/store'
-import { addProduct, removeProduct } from '../../services/cart'
+import { addProduct, changeCount, removeProduct } from '../../services/cart'
 
 import './productCard.scss'
 
@@ -21,20 +21,29 @@ const ProductCard = ({
   const handleCountChange = (e) => {
     if (e.target.value) {
       if (e.target.value > product.totalCount) setCount(product.totalCount)
-      else setCount(e.target.value)
+      else {
+        setCount(e.target.value)
+        store.dispatch(
+          changeCount({ productId: product.id, count: e.target.value }),
+        )
+      }
     } else {
       setCount(1)
     }
   }
 
   const handleClickIncrement = () => {
-    if (count < product.totalCount) setCount(+count + 1)
-    else setCount(product.totalCount)
+    if (count < product.totalCount) {
+      setCount(+count + 1)
+      store.dispatch(changeCount({ productId: product.id, count: +count + 1 }))
+    } else setCount(product.totalCount)
   }
 
   const handleClickDecrement = () => {
-    if (count > 1) setCount(count - 1)
-    else setCount(1)
+    if (count > 1) {
+      setCount(count - 1)
+      store.dispatch(changeCount({ productId: product.id, count: count - 1 }))
+    } else setCount(1)
   }
 
   const addToCart = (productId, count) => {
@@ -88,7 +97,7 @@ const ProductCard = ({
               type="text"
               className={`${className}-counter-count`}
               value={count}
-              onChange={handleCountChange}
+              onChange={(e) => handleCountChange(e)}
             />
             <button
               className={`${className}-counter-increment`}
