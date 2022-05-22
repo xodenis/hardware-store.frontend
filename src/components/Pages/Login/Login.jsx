@@ -16,7 +16,7 @@ const Login = () => {
   const [formErrors, setFormErrors] = useState({})
   const [isSubmit, setIsSubmit] = useState(false)
 
-  const { isAuthenticated } = useSelector((state) => state.authSlice)
+  const { isAuthenticated, error } = useSelector((state) => state.authSlice)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -75,6 +75,7 @@ const Login = () => {
             error={formErrors.password && formErrors.password}
           />
         </div>
+        <span className="login-form-error">{error}</span>
         <button type="submit" className="login-form-button">
           Войти
         </button>

@@ -6,6 +6,10 @@ const axiosInstance = axios.create({
 })
 
 export const login = createAsyncThunk('auth/login', async (credentials) => {
-  const response = await axiosInstance.post('/login', credentials)
+  const response = await axiosInstance
+    .post('/login', credentials)
+    .catch((err) => {
+      throw new Error(err.response.data)
+    })
   return response.data
 })
