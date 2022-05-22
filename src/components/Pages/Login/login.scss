@@ -19,5 +19,9 @@
       color: map-get($map: $colors, $key: white);
       background-color: map-get($map: $colors, $key: primary);
     }
+
+    &-error {
+      color: map-get($map: $colors, $key: error);
+    }
   }
 }

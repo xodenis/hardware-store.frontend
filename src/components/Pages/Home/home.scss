@@ -2,6 +2,33 @@
 
 @import '../../assets/colors.scss';
 
+.home {
+  padding-bottom: 25px;
+
+  &-recommendations {
+    &-title {
+      display: flex;
+      align-items: center;
+      margin-top: 25px;
+      margin-bottom: 25px;
+
+      &-icon {
+        font-size: 35px;
+        margin-right: 10px;
+        color: map-get($map: $colors, $key: primary);
+      }
+
+      &-text {
+        margin: 0;
+        width: max-content;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 26px;
+      }
+    }
+  }
+}
+
 .carousel-indicators {
   [data-bs-target] {
     background-color: map-get($map: $colors, $key: primary);
