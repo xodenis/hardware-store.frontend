@@ -1,25 +1,24 @@
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import jwtDecode from 'jwt-decode'
 import { store } from './app/store'
+import { getCart } from './services/cart'
+import { getFavorites } from './services/favorites'
+import { tokenExpire, userAuthenticated } from './app/authSlice'
+
 import Layout from './components/Layout/Layout'
 import Home from './components/Pages/Home/Home'
 import Login from './components/Pages/Login/Login'
-import { ProductsList } from './components/Pages/Products'
+import { Product, ProductsList } from './components/Pages/Products'
 import PrivateRoute from './components/PrivateRoute'
-import { tokenExpire, userAuthenticated } from './app/authSlice'
 import { Profile, ProfileInfo, ProfileOrders } from './components/Pages/Profile'
 import { Cart } from './components/Pages/Cart'
 import { Order, OrderInfo } from './components/Pages/Order'
-import { useSelector } from 'react-redux'
-import { getCart } from './services/cart'
+import { Favorites } from './components/Pages/Favorites'
 
 function App() {
   const { isAuthenticated } = useSelector((state) => state.authSlice)
-
-  useEffect(() => {
-    if (isAuthenticated) store.dispatch(getCart())
-  }, [isAuthenticated])
 
   useEffect(() => {
     const token = sessionStorage.getItem('token')
@@ -35,6 +34,13 @@ function App() {
     }
   }, [])
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      store.dispatch(getFavorites())
+      store.dispatch(getCart())
+    }
+  }, [isAuthenticated])
+
   return (
     <Layout>
       <Routes>
@@ -46,11 +52,16 @@ function App() {
             <Route path=":subcategoryId" element={<ProductsList />} />
           </Route>
         </Route>
+        <Route path="product/:productId" element={<Product />} />
         <Route path="contacts" element={<>Контакты</>} />
         <Route path="delivery" element={<>Доставка</>} />
         <Route
           path="favorites"
-          element={<PrivateRoute>Избранное</PrivateRoute>}
+          element={
+            <PrivateRoute>
+              <Favorites />
+            </PrivateRoute>
+          }
         />
         <Route
           path="profile"

@@ -1,8 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useEffect, useState } from 'react'
-import { Col, FormCheck, Row } from 'react-bootstrap'
+import { useState } from 'react'
+import { useSelector } from 'react-redux'
 import { store } from '../../app/store'
+import { addToFavorites, removeFromFavorites } from '../../services/favorites'
 import { addProduct, changeCount, removeProduct } from '../../services/cart'
+import { Col, FormCheck, Row } from 'react-bootstrap'
 
 import './productCard.scss'
 
@@ -16,16 +18,18 @@ const ProductCard = ({
   onSelect,
   onUnselect,
 }) => {
+  const { favorites } = useSelector((state) => state.favoritesSlice)
+
   const [count, setCount] = useState(initialCount)
+  const isAlreadyInFavorites = favorites.products?.some(
+    (item) => item.product.id === product.id,
+  )
 
   const handleCountChange = (e) => {
     if (e.target.value) {
       if (e.target.value > product.totalCount) setCount(product.totalCount)
       else {
         setCount(e.target.value)
-        store.dispatch(
-          changeCount({ productId: product.id, count: e.target.value }),
-        )
       }
     } else {
       setCount(1)
@@ -35,14 +39,12 @@ const ProductCard = ({
   const handleClickIncrement = () => {
     if (count < product.totalCount) {
       setCount(+count + 1)
-      store.dispatch(changeCount({ productId: product.id, count: +count + 1 }))
     } else setCount(product.totalCount)
   }
 
   const handleClickDecrement = () => {
     if (count > 1) {
       setCount(count - 1)
-      store.dispatch(changeCount({ productId: product.id, count: count - 1 }))
     } else setCount(1)
   }
 
@@ -50,8 +52,43 @@ const ProductCard = ({
     store.dispatch(addProduct({ productId, count }))
   }
 
+  const handleClickFavorites = (productId) => {
+    if (isAlreadyInFavorites) store.dispatch(removeFromFavorites(productId))
+    else store.dispatch(addToFavorites(productId))
+  }
+
   const CartItem = () => {
     const [selected, setSelected] = useState(isSelected)
+
+    const handleCountChange = (e) => {
+      if (e.target.value) {
+        if (e.target.value > product.totalCount) setCount(product.totalCount)
+        else {
+          setCount(e.target.value)
+          store.dispatch(
+            changeCount({ productId: product.id, count: e.target.value }),
+          )
+        }
+      } else {
+        setCount(1)
+      }
+    }
+
+    const handleClickIncrement = () => {
+      if (count < product.totalCount) {
+        setCount(+count + 1)
+        store.dispatch(
+          changeCount({ productId: product.id, count: +count + 1 }),
+        )
+      } else setCount(product.totalCount)
+    }
+
+    const handleClickDecrement = () => {
+      if (count > 1) {
+        setCount(count - 1)
+        store.dispatch(changeCount({ productId: product.id, count: count - 1 }))
+      } else setCount(1)
+    }
 
     const handleChange = (e) => {
       if (e.target.checked === true) onSelect(product.id, initialCount)
@@ -158,8 +195,17 @@ const ProductCard = ({
       <div className={`${className}-content`}>
         <button
           className={`${className}-favorites`}
-          title="Добавить в избранное">
-          <FontAwesomeIcon icon="fa-regular fa-heart" />
+          title={
+            isAlreadyInFavorites
+              ? 'Удалить из избранного'
+              : 'Добавить в избранное'
+          }
+          onClick={() => handleClickFavorites(product.id)}>
+          {isAlreadyInFavorites ? (
+            <FontAwesomeIcon icon="fa-solid fa-heart" />
+          ) : (
+            <FontAwesomeIcon icon="fa-regular fa-heart" />
+          )}
         </button>
         <a href={`/product/${product.id}`} className={`${className}-image`}>
           <img

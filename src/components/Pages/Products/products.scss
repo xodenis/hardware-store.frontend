@@ -101,3 +101,209 @@
     position: relative;
   }
 }
+
+.product {
+  margin-top: 25px;
+  margin-bottom: 25px;
+
+  &-title {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+
+    &-name {
+      font-weight: 600;
+      font-size: 22px;
+    }
+
+    &-id {
+      display: flex;
+      align-items: center;
+      padding: 0px 15px;
+      border: 1px solid map-get($map: $colors, $key: secondary);
+    }
+  }
+
+  &-info {
+    padding-bottom: 25px;
+
+    &-image {
+      position: relative;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    &-favorites {
+      display: flex;
+      position: absolute;
+      z-index: 1;
+      top: 10px;
+      right: 10px;
+      width: 25px;
+      height: 25px;
+      padding: 0;
+      margin: 0;
+      border: none;
+      background: none;
+      color: map-get($map: $colors, $key: primary);
+      font-size: 25px;
+
+      &:hover {
+        top: 8px;
+        right: 8px;
+        width: 29px;
+        height: 29px;
+        font-size: 29px;
+      }
+    }
+
+    &-price {
+      display: flex;
+      align-items: center;
+      height: 100px;
+      padding: 0px 30px;
+      background-color: map-get($map: $colors, $key: secondary-light);
+      font-size: 30px;
+      span {
+        margin-left: 15px;
+        font-weight: 600;
+        font-size: 40px;
+      }
+    }
+
+    &-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100px;
+      padding: 0px 30px;
+      border-left: 1px solid map-get($map: $colors, $key: secondary-light);
+      border-right: 1px solid map-get($map: $colors, $key: secondary-light);
+
+      &-counter {
+        display: flex;
+        height: 57px;
+        border: 1px solid map-get($map: $colors, $key: secondary-light);
+
+        &-count {
+          display: block;
+          width: 150px;
+          text-align: center;
+          font-size: 24px;
+          line-height: 46px;
+          border: none;
+          outline: none;
+        }
+
+        &-decrement,
+        &-increment {
+          display: block;
+          width: 55px;
+          height: 55px;
+          padding: 0;
+          border: none;
+          font-size: 25px;
+          color: map-get($map: $colors, $key: black);
+        }
+      }
+
+      &-addToCart {
+        display: block;
+        padding: 10px 60px;
+        border: none;
+        border-radius: 5px;
+        font-weight: 400;
+        font-size: 24px;
+        text-transform: uppercase;
+        background-color: map-get($map: $colors, $key: primary);
+        color: map-get($map: $colors, $key: white);
+      }
+    }
+
+    &-availability {
+      display: block;
+      margin-top: 25px;
+
+      .in-stock {
+        color: map-get($map: $colors, $key: green);
+      }
+
+      .not-available {
+        color: map-get($map: $colors, $key: error);
+      }
+    }
+
+    &-totalPrice {
+      display: flex;
+      align-items: center;
+      height: 50px;
+      font-size: 24px;
+      padding: 0px 30px;
+      background-color: map-get($map: $colors, $key: secondary-light);
+
+      span {
+        margin-left: 15px;
+        font-weight: 600;
+      }
+    }
+  }
+
+  &-characteristics {
+    padding-top: 25px;
+    padding-bottom: 25px;
+    background-color: map-get($map: $colors, $key: secondary-light);
+
+    &-title {
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 26px;
+    }
+
+    &-list {
+      &-item {
+        height: 80px;
+        margin-bottom: 25px;
+
+        &-content {
+          padding: 0px 30px;
+          display: flex;
+          align-items: center;
+          height: 100%;
+          background-color: map-get($map: $colors, $key: white);
+
+          .characteristic-type {
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 18px;
+          }
+        }
+      }
+    }
+  }
+
+  &-recommendations {
+    &-title {
+      display: flex;
+      align-items: center;
+      margin-top: 25px;
+      margin-bottom: 25px;
+
+      &-icon {
+        font-size: 35px;
+        margin-right: 10px;
+        color: map-get($map: $colors, $key: primary);
+      }
+
+      &-text {
+        margin: 0;
+        width: max-content;
+        text-transform: uppercase;
+        font-weight: 600;
+        font-size: 26px;
+      }
+    }
+  }
+}
