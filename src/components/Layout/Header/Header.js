@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { Col, Container, Form, Nav, Navbar } from 'react-bootstrap'
@@ -7,18 +7,14 @@ import { CategoriesPopup } from '../../Categories'
 import logo from '../../assets/img/logo.svg'
 
 import './header.scss'
-import { store } from '../../../app/store'
-import { getCart } from '../../../services/cart'
 
 const Header = () => {
   const { cart } = useSelector((state) => state.cartSlice)
+  const { favorites } = useSelector((state) => state.favoritesSlice)
+
   const [showCategoryPopup, setShowCategoryPopup] = useState(false)
 
   const handleCatalogClick = () => setShowCategoryPopup(!showCategoryPopup)
-
-  useEffect(() => {
-    store.dispatch(getCart())
-  }, [])
 
   return (
     <header className="header">
@@ -92,12 +88,17 @@ const Header = () => {
             </div>
           </Col>
           <Col xs={5} as={Nav}>
-            <NavLink className="navbar-nav-link" to="/favorites">
+            <NavLink className="navbar-nav-link favorites-link" to="/favorites">
               <FontAwesomeIcon
                 className="navbar-nav-icon"
                 icon="fa-regular fa-heart"
               />
               Избранное
+              {favorites.products && favorites.products?.length !== 0 && (
+                <span className="favorites-link-count">
+                  {favorites.products?.length}
+                </span>
+              )}
             </NavLink>
             <NavLink className="navbar-nav-link" to="/profile/info">
               <FontAwesomeIcon
@@ -112,7 +113,7 @@ const Header = () => {
                 icon="fa-solid fa-cart-shopping"
               />
               Корзина
-              {cart.products && cart.products?.length != 0 && (
+              {cart.products && cart.products?.length !== 0 && (
                 <span className="cart-link-count">{cart.products?.length}</span>
               )}
             </NavLink>

@@ -1,0 +1,19 @@
+@use 'sass:map';
+
+@import '../../assets/colors.scss';
+
+.favorites {
+  padding-bottom: 25px;
+
+  &-title {
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 36px;
+
+    &-empty {
+      margin-top: 25px;
+      margin-bottom: 25px;
+      font-size: 20px;
+    }
+  }
+}
