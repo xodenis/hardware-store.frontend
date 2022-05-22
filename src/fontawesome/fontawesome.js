@@ -7,7 +7,6 @@ import {
   faBars,
   faMagnifyingGlass,
   faCartShopping,
-  faStar,
   faList,
   faCalculator,
   faAngleDown,
@@ -15,6 +14,7 @@ import {
   faMinus,
   faPlus,
   faArrowRightFromBracket,
+  faHeart as faHeartSolid,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -25,6 +25,7 @@ import {
   faEyeSlash,
   faPenToSquare,
   faTrashCan,
+  faStar,
 } from '@fortawesome/free-regular-svg-icons'
 
 library.add(
@@ -35,15 +36,16 @@ library.add(
   faBars,
   faMagnifyingGlass,
   faHeart,
+  faHeartSolid,
   faUser,
   faCartShopping,
-  faStar,
   faList,
   faCalculator,
   faAngleDown,
   faAngleRight,
   faMinus,
   faPlus,
+  faStar,
   faEye,
   faEyeSlash,
   faPenToSquare,
