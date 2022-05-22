@@ -5,6 +5,16 @@ const axiosInstance = axios.create({
   baseURL: `${process.env.REACT_APP_BASE_URL}/products`,
 })
 
+export const getById = createAsyncThunk(
+  'products/getById',
+  async (productId) => {
+    const response = await axiosInstance.get(
+      `/get_by_id?productId=${productId}`,
+    )
+    return response.data
+  },
+)
+
 export const getAllProducts = createAsyncThunk(
   'products/getAllProducts',
   async () => {

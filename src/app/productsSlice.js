@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import {
   getAllProducts,
+  getById,
   getProductsByCategory,
   getProductsBySubcategory,
 } from '../services/products'
@@ -8,6 +9,7 @@ import {
 const initialState = {
   loading: false,
   products: [],
+  product: {},
   maxProductsPrice: 0,
   error: '',
 }
@@ -18,6 +20,20 @@ export const productsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(getById.pending, (state) => {
+        state.loading = true
+      })
+      .addCase(getById.fulfilled, (state, action) => {
+        state.loading = false
+        state.product = action.payload
+        state.error = ''
+      })
+      .addCase(getById.rejected, (state, action) => {
+        state.loading = false
+        state.product = {}
+        state.error = action.error.message
+      })
+
       .addCase(getAllProducts.pending, (state) => {
         state.loading = true
       })
@@ -36,6 +52,7 @@ export const productsSlice = createSlice({
         state.maxProductsPrice = 0
         state.error = action.error.message
       })
+
       .addCase(getProductsByCategory.pending, (state) => {
         state.loading = true
       })
@@ -54,6 +71,7 @@ export const productsSlice = createSlice({
         state.maxProductsPrice = 0
         state.error = action.error.message
       })
+
       .addCase(getProductsBySubcategory.pending, (state) => {
         state.loading = true
       })
